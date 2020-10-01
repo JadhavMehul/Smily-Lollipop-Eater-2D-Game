@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-        rb2d.AddForce(movement * speed);
+        rb2d.AddForce(movement * speed); //Acceleration force to object 
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -30,17 +30,18 @@ public class PlayerController : MonoBehaviour {
         if (other.gameObject.CompareTag("Food"))
         {
             other.gameObject.SetActive(false);
-            count = count + 1;
+            count++;	//increasing th score count
             SetCountText();
         }
     }
 
+	
     void SetCountText()
     {
         countText.text = "Count" + count.ToString();
         if(count >= 26)
         {
-            winText.text = "You Win!";
+            winText.text = "You Win!"; //updating the count text
         }
     }
 }
